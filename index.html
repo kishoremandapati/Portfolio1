@@ -1,101 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sai Pavan Kishore Mandapati | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sai Pavan Kishore Mandapati – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg: #04152d;
+      --color-dark: #0b2447;
+      --color-secondary: #19376d;
+      --color-primary: #576cbc;
+      --color-accent: #a8c0ff;
+      --color-text: #ffffff;
+      --color-muted: #8da8cc;
+      --font-heading: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="style.css">
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 10%;
+      backdrop-filter: blur(14px);
+      background: rgba(4, 21, 45, 0.75);
+      border-bottom: 1px solid rgba(87, 108, 188, 0.15);
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--color-accent);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--color-muted);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-text); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10%;
+      padding-top: 80px;
+      overflow: hidden;
+    }
+
+    .hero-blur-top {
+      position: absolute;
+      width: 55vw; height: 55vw;
+      top: -120px; left: -8vw;
+      border-radius: 50%;
+      background: rgba(25, 55, 109, 0.65);
+      filter: blur(110px);
+      pointer-events: none;
+    }
+    .hero-blur-bottom {
+      position: absolute;
+      width: 65vw; height: 50vw;
+      top: 260px; right: -22vw;
+      border-radius: 50%;
+      background: rgba(87, 108, 188, 0.3);
+      filter: blur(110px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      z-index: 1;
+      max-width: 540px;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      background: linear-gradient(100deg, #fff 60%, rgba(255,255,255,0.2) 120%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-content p {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--color-muted);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--color-primary);
+      color: #fff;
+      border-radius: 100px;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 32px;
+      box-shadow: 0 0 30px rgba(87, 108, 188, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(87, 108, 188, 0.6);
+    }
+
+    .hero-avatar {
+      z-index: 1;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 96px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.9);
+      flex-shrink: 0;
+      animation: floating 3s ease-in-out infinite, fadeIn 1s ease both;
+      box-shadow: 0 0 80px rgba(87, 108, 188, 0.35);
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(12px); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 100px 10%;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-avatar-box {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 280px;
+      margin: auto;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 72px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.85);
+      box-shadow: 0 8px 60px rgba(87,108,188,0.25);
+    }
+
+    .about-items { display: flex; flex-direction: column; gap: 24px; }
+
+    .about-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: rgba(25, 55, 109, 0.35);
+      border: 1px solid rgba(87, 108, 188, 0.18);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .about-item:hover {
+      border-color: rgba(87, 108, 188, 0.5);
+      transform: translateX(4px);
+    }
+
+    .about-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .about-item h3 {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .about-item p { color: var(--color-muted); font-size: 14px; line-height: 1.6; }
+
+    /* ── EXPERIENCE / SKILLS ── */
+    #experience .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 60px;
+    }
+
+    .skills-heading {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--color-accent);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill-pill {
+      background: rgba(25, 55, 109, 0.5);
+      border: 1px solid rgba(87, 108, 188, 0.25);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .skill-pill:hover {
+      background: rgba(87, 108, 188, 0.35);
+      transform: scale(1.05);
+    }
+
+    .history-list { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+
+    .history-item {
+      display: flex;
+      gap: 20px;
+      background: rgba(25, 55, 109, 0.3);
+      border: 1px solid rgba(87, 108, 188, 0.15);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .history-item:hover { border-color: rgba(87, 108, 188, 0.45); }
+
+    .history-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .history-item h3 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .history-date { font-size: 13px; color: var(--color-muted); margin-bottom: 10px; }
+    .history-item ul { list-style: disc; padding-left: 18px; color: var(--color-muted); font-size: 14px; line-height: 1.7; }
+
+    /* ── PROJECTS ── */
+    #projects .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .project-card {
+      background: rgba(11, 36, 71, 0.7);
+      border: 1px solid rgba(87, 108, 188, 0.2);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(87, 108, 188, 0.5);
+      box-shadow: 0 20px 60px rgba(87, 108, 188, 0.12);
+    }
+
+    .project-emoji { font-size: 36px; }
+
+    .project-card h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .project-card p { color: var(--color-muted); font-size: 14px; line-height: 1.6; flex: 1; }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-tag {
+      background: rgba(87, 108, 188, 0.2);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    .project-links { display: flex; gap: 12px; margin-top: 4px; }
+    .project-link {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-primary);
+      border: 1px solid rgba(87, 108, 188, 0.35);
+      border-radius: 8px;
+      padding: 6px 14px;
+      transition: background 0.2s;
+    }
+    .project-link:hover { background: rgba(87, 108, 188, 0.2); }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .cert-card {
+      background: rgba(25, 55, 109, 0.3);
+      border: 1px solid rgba(87, 108, 188, 0.15);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cert-card:hover {
+      border-color: rgba(87, 108, 188, 0.45);
+      transform: translateY(-3px);
+    }
+
+    .cert-icon { font-size: 32px; margin-bottom: 12px; }
+    .cert-card h3 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .cert-org { color: var(--color-accent); font-size: 13px; margin-bottom: 4px; font-weight: 500; }
+    .cert-date { color: var(--color-muted); font-size: 12px; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: rgba(11, 36, 71, 0.5);
+      border-top: 1px solid rgba(87, 108, 188, 0.15);
+      text-align: center;
+    }
+
+    #contact p {
+      color: var(--color-muted);
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .contact-link a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--color-text);
+      background: rgba(25, 55, 109, 0.4);
+      border: 1px solid rgba(87, 108, 188, 0.25);
+      border-radius: 12px;
+      padding: 14px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .contact-link a:hover {
+      background: rgba(87, 108, 188, 0.25);
+      transform: translateY(-2px);
+    }
+    .contact-link .ci { font-size: 20px; }
+
+    footer-note {
+      display: block;
+      margin-top: 60px;
+      color: var(--color-muted);
+      font-size: 13px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 830px) {
+      nav { padding: 16px 5%; }
+      .nav-links { gap: 20px; }
+      section { padding: 70px 5%; }
+      #hero { padding: 80px 5% 40px; flex-direction: column-reverse; gap: 40px; text-align: center; justify-content: center; }
+      .hero-avatar { width: 200px; height: 200px; font-size: 60px; }
+      #about .about-grid { grid-template-columns: 1fr; }
+      #experience .exp-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAV -->
 <nav>
-  <h2>Sai Pavan</h2>
-  <ul>
-    <li><a href="#hero">Home</a></li>
+  <a class="nav-logo" href="#hero">Pavan.</a>
+  <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- ================= HERO SECTION ================= -->
+<!-- HERO -->
 <section id="hero">
-  <div>
-    <h1>Hello, I'm <span>Sai Pavan Kishore</span></h1>
-    <p>
-      MCA Student | Python Developer | Software Developer | Data Analytics Enthusiast  
-      Passionate about building scalable applications and solving real-world problems.
-    </p>
-    <a href="#projects" class="btn">View Projects</a>
+  <div class="hero-blur-top"></div>
+  <div class="hero-blur-bottom"></div>
+  <div class="hero-content">
+    <h1>Hi, I'm Sai Pavan Kishore</h1>
+    <p>MCA Graduate · Python Developer · Data Analytics Enthusiast. I build database-driven applications and real-time systems, and turn data into compelling visual insights.</p>
+    <a href="mailto:kishoremandapati565@gmail.com" class="hero-btn">Contact Me</a>
   </div>
+  <div class="hero-avatar">SP</div>
 </section>
 
-<!-- ================= ABOUT SECTION ================= -->
+<!-- ABOUT -->
 <section id="about">
-  <h2>About Me</h2>
-  <p>
-    I am an MCA student with strong interest in Software Development and Data Analytics.
-    I have hands-on experience in Python, SQL, Tableau, and web technologies.
-    I enjoy building real-time projects, analyzing datasets, and creating meaningful digital solutions.
-  </p>
+  <h2 class="section-title">About</h2>
+  <div class="about-grid">
+    <div class="about-avatar-box">SP</div>
+    <ul class="about-items">
+      <li class="about-item">
+        <span class="about-icon">🐍</span>
+        <div>
+          <h3>Python &amp; Flask Developer</h3>
+          <p>Skilled in building database-driven web applications with Python and Flask, integrating OpenCV and deep-learning libraries for real-time features.</p>
+        </div>
+      </li>
+      <li class="about-item">
+        <span class="about-icon">📊</span>
+        <div>
+          <h3>Data Analytics &amp; Visualisation</h3>
+          <p>Experienced with Tableau and Python for cleaning large datasets, creating KPI dashboards, and delivering actionable business insights.</p>
+        </div>
+      </li>
+      <li class="about-item">
+        <span class="about-icon">🗄️</span>
+        <div>
+          <h3>Database Engineering</h3>
+          <p>Comfortable with SQL, MySQL, SQLite, and MongoDB — designing schemas, optimising queries, and managing data pipelines for full-stack projects.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 </section>
 
-<!-- ================= PROJECTS SECTION ================= -->
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2 class="section-title">Experience &amp; Skills</h2>
+  <div class="exp-grid">
+
+    <!-- Skills -->
+    <div>
+      <p class="skills-heading">Tech Stack</p>
+      <div class="skills-grid">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">C</span>
+        <span class="skill-pill">Flask</span>
+        <span class="skill-pill">HTML</span>
+        <span class="skill-pill">CSS</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">MySQL</span>
+        <span class="skill-pill">SQLite</span>
+        <span class="skill-pill">MongoDB</span>
+        <span class="skill-pill">Tableau</span>
+        <span class="skill-pill">OpenCV</span>
+        <span class="skill-pill">dlib</span>
+        <span class="skill-pill">MS Office</span>
+      </div>
+    </div>
+
+    <!-- History -->
+    <ul class="history-list">
+      <li class="history-item">
+        <span class="history-icon">📈</span>
+        <div>
+          <h3>Data Analytics Intern · SmartInternz</h3>
+          <p class="history-date">2 Months</p>
+          <ul>
+            <li>Analysed datasets using Tableau and Python</li>
+            <li>Developed interactive dashboards for data-driven insights</li>
+          </ul>
+        </div>
+      </li>
+      <li class="history-item">
+        <span class="history-icon">💻</span>
+        <div>
+          <h3>Python Developer Intern · Talent Shine India Pvt. Ltd</h3>
+          <p class="history-date">120 Hours</p>
+          <ul>
+            <li>Gained hands-on experience in the software development lifecycle</li>
+            <li>Worked on coding standards and debugging techniques</li>
+          </ul>
+        </div>
+      </li>
+      <li class="history-item">
+        <span class="history-icon">🎓</span>
+        <div>
+          <h3>MCA Student · Swarnandhra College of Engineering &amp; Technology</h3>
+          <p class="history-date">Expected 2026 · CGPA 7.96</p>
+          <ul>
+            <li>Specialising in software development, data structures &amp; OOP</li>
+            <li>Building full-stack and data analytics projects</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
 <section id="projects">
-  <h2>Projects</h2>
-
-  <div class="project-grid">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
 
     <div class="project-card">
-      <h3>Cosmetic Insights Dashboard</h3>
-      <p>
-        Built interactive Tableau dashboards to analyze product trends,
-        customer behavior, and sales performance.
-      </p>
-      <a href="#" class="btn">View Project</a>
+      <span class="project-emoji">🎯</span>
+      <h3>Student Attendance System – Face Recognition</h3>
+      <p>Full-stack web app that automates attendance via real-time face recognition. Captures and encodes facial images using deep-learning embeddings (dlib), matches them against stored records, and logs attendance securely in MySQL.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Flask</span>
+        <span class="project-tag">OpenCV</span>
+        <span class="project-tag">dlib</span>
+        <span class="project-tag">MySQL</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/kishoremandapati565" target="_blank">GitHub →</a>
+      </div>
     </div>
 
     <div class="project-card">
-      <h3>Student Attendance System</h3>
-      <p>
-        Developed a Face Recognition based Attendance System
-        using Python and OpenCV.
-      </p>
-      <a href="#" class="btn">View Project</a>
-    </div>
-
-    <div class="project-card">
-      <h3>Portfolio Website</h3>
-      <p>
-        Designed and deployed a responsive personal portfolio
-        using HTML and CSS.
-      </p>
-      <a href="#" class="btn">View Project</a>
+      <span class="project-emoji">💄</span>
+      <h3>Cosmetic Insights – Tableau Dashboard</h3>
+      <p>Interactive Tableau dashboards analysing market trends, product performance, and customer behaviour. Features dynamic filters (Brand, Skin Type, Product Category) and KPI-driven bar, line, and trend visualisations for strategic decision-making.</p>
+      <div class="project-tags">
+        <span class="project-tag">Tableau</span>
+        <span class="project-tag">Data Analytics</span>
+        <span class="project-tag">Data Cleaning</span>
+        <span class="project-tag">KPI Design</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/kishoremandapati565" target="_blank">GitHub →</a>
+      </div>
     </div>
 
   </div>
 </section>
 
-<!-- ================= CONTACT SECTION ================= -->
-<section id="contact">
-  <h2>Contact Me</h2>
-  <p>Email: saipavan@example.com</p>
-  <p>LinkedIn: linkedin.com/in/saipavan</p>
-  <p>GitHub: github.com/kishoremandapati</p>
-  <a href="mailto:saipavan@example.com" class="btn">Send Email</a>
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <h2 class="section-title">Certifications</h2>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🏅</div>
+      <h3>Data Analytics Job Simulation</h3>
+      <p class="cert-org">Deloitte · Forage</p>
+      <p class="cert-date">April 2025</p>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🏅</div>
+      <h3>Getting Started with Data</h3>
+      <p class="cert-org">IBM SkillsBuild</p>
+      <p class="cert-date">May 2025</p>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🏅</div>
+      <h3>Data Analytics with Tableau</h3>
+      <p class="cert-org">SmartInternz Internship</p>
+      <p class="cert-date">2024–2025</p>
+    </div>
+  </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-  © 2026 Sai Pavan Kishore Mandapati. All Rights Reserved.
-</footer>
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p>Feel free to reach out — I'm actively seeking entry-level Software Developer roles!</p>
+  <ul class="contact-links">
+    <li class="contact-link">
+      <a href="mailto:kishoremandapati565@gmail.com">
+        <span class="ci">📧</span> kishoremandapati565@gmail.com
+      </a>
+    </li>
+    <li class="contact-link">
+      <a href="https://www.linkedin.com/in/kishoremandapati565" target="_blank">
+        <span class="ci">💼</span> LinkedIn
+      </a>
+    </li>
+    <li class="contact-link">
+      <a href="https://github.com/kishoremandapati565" target="_blank">
+        <span class="ci">🐙</span> GitHub
+      </a>
+    </li>
+  </ul>
+  <footer-note>© 2025 Sai Pavan Kishore Mandapati · Built with passion from Andhra Pradesh, India</footer-note>
+</section>
 
 </body>
 </html>
